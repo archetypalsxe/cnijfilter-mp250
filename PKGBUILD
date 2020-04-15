@@ -9,6 +9,7 @@
 #	* plv
 #	* Scimmia
 #	* lorenzo.bandieri
+#|* Jack Ross, III <jack-ross-iii@pm.me>
 
 pkgname=cnijfilter-source
 pkgver=3.80
@@ -63,13 +64,15 @@ prepare() {
 
 build() {
 
-  cd "${srcdir}/cnijfilter-source-${_pkgrealver}-${_pkgrealrel}/libs"
+  cd "${srcdir}/cnijfilter-source-${_pkgrealver}-${pkgbranch}/libs"
+  autoheader
   ./autogen.sh --prefix=/usr --program-suffix=mp250
   make
 
   for dir in {cngpij,cnijfilter,pstocanonij,lgmon,backend,backendnet}
   do
-    cd "${srcdir}/cnijfilter-source-${_pkgrealver}-${_pkgrealrel}/${dir}"
+    cd "${srcdir}/cnijfilter-source-${_pkgrealver}-${pkgbranch}/${dir}"
+    autoheader
     ./autogen.sh --prefix=/usr --program-suffix=mp250 --enable-progpath=/usr/bin
     make
   done
