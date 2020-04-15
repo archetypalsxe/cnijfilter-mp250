@@ -48,22 +48,16 @@ install=cnijfilter-mp250.install
 source=(
     'https://github.com/spremi/cnijfilter-source-3.80/archive/master.zip'
     'fix.patch'
-    'libpng.patch'
-    'automake_fix.patch'
 )
 md5sums=(
     'a59034fa5fe2e39fa42e8c1bf58f967b'
-    'fbfdc24a6c11d19628c44066f43e95e4'
-    '15e417cd427a920c83e4f28e225e428e'
-    '07f698d8987632d9bb427d3f4a42a29a'
+    'b5748bc1882df9d11e15c11c4800c054'
 )
 
 
 prepare() {
   cd "${srcdir}/cnijfilter-source-${_pkgrealver}-${pkgbranch}/"
   patch -p0 < "${srcdir}/fix.patch"
-  patch -p0 < "${srcdir}/libpng.patch"
-#  patch -p0 < "${srcdir}/automake_fix.patch"
 }
 
 
@@ -71,7 +65,7 @@ build() {
 
   cd "${srcdir}/cnijfilter-source-${_pkgrealver}-${_pkgrealrel}/libs"
   ./autogen.sh --prefix=/usr --program-suffix=mp250
-  make 
+  make
 
   for dir in {cngpij,cnijfilter,pstocanonij,lgmon,backend,backendnet}
   do
