@@ -10,10 +10,11 @@
 #	* Scimmia
 #	* lorenzo.bandieri
 
-pkgname=cnijfilter-mp250
-pkgver=3.40.1
+pkgname=cnijfilter-source
+pkgver=3.80
+pkgbranch=master
 pkgrel=5.1
-_pkgrealver=3.40
+_pkgrealver=3.80
 _pkgrealrel=1
 pkgdesc="Canon IJ Printer Driver (MP250 series)"
 url="http://support-au.canon.com.au/contents/AU/EN/0100302002.html"
@@ -45,21 +46,21 @@ makedepends=(
 conflicts=('cnijfilter-common')
 install=cnijfilter-mp250.install
 source=(
-    'http://gdlp01.c-wss.com/gds/0/0100003020/01/cnijfilter-source-3.40-1.tar.gz'
+    'https://github.com/spremi/cnijfilter-source-3.80/archive/master.zip'
     'fix.patch'
     'libpng.patch'
     'automake_fix.patch'
 )
 md5sums=(
-    '609975a05d6050fcca88f312d3f35c6a'
-    'ba9c7ec49e76bf74cc50702e362aba7b'
+    'a59034fa5fe2e39fa42e8c1bf58f967b'
+    'fbfdc24a6c11d19628c44066f43e95e4'
     '15e417cd427a920c83e4f28e225e428e'
     '07f698d8987632d9bb427d3f4a42a29a'
 )
 
 
 prepare() {
-  cd "${srcdir}/cnijfilter-source-${_pkgrealver}-${_pkgrealrel}/"
+  cd "${srcdir}/cnijfilter-source-${_pkgrealver}-${pkgbranch}/"
   patch -p0 < "${srcdir}/fix.patch"
   patch -p0 < "${srcdir}/libpng.patch"
 #  patch -p0 < "${srcdir}/automake_fix.patch"
